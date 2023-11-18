@@ -10,6 +10,8 @@ interface IResponse {
   user: IUser
 }
 
+// Имитация запросов с сервера
+
 const postLogin = (body: ILogin): Promise<IResponse> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

@@ -9,6 +9,8 @@ interface IBody {
   comment: string
 }
 
+// Имитация запросов с сервера
+
 const postComment = ({imageId, comment}: IBody): Promise<IResponse> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

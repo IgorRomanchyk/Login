@@ -4,6 +4,8 @@ interface IResponse {
   user: IUser
 }
 
+// Имитация запросов с сервера
+
 const getWhoAmI = (): Promise<IResponse> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

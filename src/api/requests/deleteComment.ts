@@ -1,9 +1,3 @@
-import { IUser } from "../../types/user"
-
-interface ILogin {
-  username: string
-  password: string
-}
 
 interface IResponse {
   successful: boolean
@@ -12,6 +6,8 @@ interface IResponse {
 interface IBody {
   commentId: number
 }
+
+// Имитация запросов с сервера
 
 const deleteComment = ({commentId}: IBody): Promise<IResponse> => {
   return new Promise((resolve, reject) => {

@@ -4,6 +4,8 @@ interface IResponse {
   user: IUser
 }
 
+// Имитация запросов с сервера
+
 const getComments = (imageId: number): Promise<IResponse> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {  
