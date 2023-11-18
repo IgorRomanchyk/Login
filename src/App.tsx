@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import getWhoAmI from './api/requests/getWhoAmI';
+import Routes from './Routes';
+import { useDispatch } from "react-redux"
+import { setUser } from './redux/userSlice';
 import './App.css';
 
+
+
 function App() {
+  const [loading, setLoading] = useState(true)
+
+  const dispatch = useDispatch()
+
+  const token = localStorage.getItem("jwt") || sessionStorage.getItem('jwt')
+
+  useEffect(() => {
+    if (token) {
+      getWhoAmI()
+        .then((data) => {
+          dispatch(setUser(data))
+        })
+        .finally(() => setLoading(false))
+    } else setLoading(false)
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <div className="App">
+    {loading ? (
+      <div><CircularProgress size={100}/></div>
+    ) : (
+      <Routes/>
+    )}
+  </div>
   );
 }
 
